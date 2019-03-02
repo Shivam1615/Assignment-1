@@ -7,9 +7,9 @@
 #define ArraySize 4096
 static char mem[ArraySize];
 
-void *mymalloc(size_t);
+void *mymalloc(size_t head);
 
-void myfree(void *);
+void myfree(void *pointer);
 
 
 #endif
