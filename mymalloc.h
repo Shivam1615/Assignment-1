@@ -5,10 +5,11 @@
 #define free( x ) myfree( x, __FILE__, __LINE__ )
 #define ArraySize 4096
 
-struct metadata{
+typedef struct metadata{
 int free;
 int datasize;
-};
+} metadata;
+
 
 static char mem[ArraySize];
 
