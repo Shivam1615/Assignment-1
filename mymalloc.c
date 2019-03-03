@@ -4,7 +4,7 @@ void* mymalloc(size_t memSize, char *variable, size_t line1){
         char* ptr =&mem[0];
         char* position;
         while(ptr>=&mem[ArraySize]){
-                if((((metadata*)(ptr))->free==0)&((metadata)(*ptr)->datasize>=memSize)){
+                if((((metadata*)(ptr))->free==0)&(((metadata*)(ptr))->datasize>=memSize)){
                         ((metadata*)(ptr))->free=1;
                         ((metadata*)(ptr))->datasize=memSize;
                         position=ptr+sizeof(metadata);
@@ -17,17 +17,17 @@ void* mymalloc(size_t memSize, char *variable, size_t line1){
         metadata *data=(metadata*)(ptr);
         data->free = 0;
         data->datasize=ArraySize-storage-sizeof(metadata);
-        
-              
-        
 
-}
-
-void* free(void* memAddr, char *variable2, size_t line2){
 
 
 
 }
+
+/*void* free(void* memAddr, char *variable2, size_t line2){
+
+
+
+}*/
 
 void InitilizeFunction(){
 
@@ -37,7 +37,7 @@ void InitilizeFunction(){
                 mem[i] = '0';
         }
 
-        metadata *start= (metadata)&mem[0];
+        metadata *start= (metadata*)&mem[0];
         start->free = 0;
         start->datasize = 4096-sizeof(metadata);
         storage=storage+sizeof(metadata);
