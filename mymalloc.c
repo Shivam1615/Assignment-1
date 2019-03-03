@@ -12,10 +12,13 @@ void* mymalloc(size_t memSize, char *variable, size_t line1){
                 }
                 ptr=ptr+sizeof(metadata)+((metadata*)(ptr))->datasize;
         }
-        
+        storage=storage+memSize;
         ptr=ptr+sizeof(metadata)+((metadata*)(ptr))->datasize;
         metadata *data=(metadata*)(ptr);
         data->free = 0;
+        data->datasize=ArraySize-storage-sizeof(metadata);
+        
+              
         
 
 }
@@ -37,5 +40,6 @@ void InitilizeFunction(){
         metadata *start= (metadata)&mem[0];
         start->free = 0;
         start->datasize = 4096-sizeof(metadata);
+        storage=storage+sizeof(metadata);
 
 }
