@@ -1,12 +1,12 @@
 #include "mymalloc.h"
 
-void* mymalloc(size_t memSize){
+void* mymalloc(size_t memSize, char *variable, size_t line1){
 
 
 
 }
 
-void* free(void* memAddr){
+void* free(void* memAddr, char *variable2, size_t line2){
 
 
 
