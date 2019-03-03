@@ -5,6 +5,8 @@
 #define free( x ) myfree( x, __FILE__, __LINE__ )
 #define ArraySize 4096
 
+int storage = 0;
+
 typedef struct metadata{
 int free;
 int datasize;
