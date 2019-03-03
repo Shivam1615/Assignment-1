@@ -1,4 +1,3 @@
-#include <stdio.h>
 #include <stdlib.h>
 #ifndef mymalloc
 
@@ -17,7 +16,7 @@ void *mymalloc(size_t head, char *variable, size_t line1);
 
 void myfree(void *pointer, char *variable2, size_t line2);
 
-void InitilizeFunction(){
+void InitilizeFunction();
 
 
-}
+#endif
