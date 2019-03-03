@@ -1,7 +1,18 @@
 #include "mymalloc.h"
 
 void* mymalloc(size_t memSize, char *variable, size_t line1){
-
+        char* ptr =&mem[0];
+        while(ptr>=&mem[ArraySize]){
+                if(((metadata)(*ptr)->free==0)&((metadata)(*ptr)->datasize>=memSize)){
+                        (metadata)(*ptr)->free=1;
+                        (metadata)(*ptr)->datasize=memSize;
+                        return (void*)*ptr;
+                }
+                ptr=ptr+sizeof(metadata)+(metadata)(*ptr)->datasize;
+        }
+        metadata *data=(metadata*)ptr;
+        start->free = 0;
+        start->datasize = 4096-sizeof(metadata);
 
 
 }
