@@ -37,22 +37,29 @@ void* mymalloc(size_t memSize, char *variable, size_t line1){
         }
 }
 
-
 void myfree(void* memAddr, char *variable2, size_t line2){
 
-printf("%p",memAddr);
- 
-if((memAddr == NULL)){
-        printf("Cannot free this pointer.\n");
-}else{
-/*      char *ptr =(char*)memAddr;
-        ptr = ptr-sizeof(metadata);
-        ((metadata*)(ptr))->free=0;
-        printf("This pointer was free.\n");*/
-}
+        char *ptr=(char*)memAddr;
+        ptr= ptr-sizeof(metadata);
+
+
+        if(memAddr==NULL){
+                printf("Can't free NULL pointer");
+                return;
+        }else{
+                printf("freed");
+                ((metadata*)(ptr))->free=0;
+        }
+
+        char *nextData=ptr+sizeof(metadata)+((metadata*)(ptr))->datasize;
+        if( ((metadata*)(nextData))->free==0){
+
+                ((metadata*)(ptr))->datasize+=(sizeof(metadata)+((metadata*)(nextData))->datasize);
+                return;
+        }
+        return;
 
 }
-
 
 void InitilizeFunction(){
 
