@@ -31,18 +31,25 @@ void* mymalloc(size_t memSize, char *variable, size_t line1){
                 ptr=ptr+sizeof(metadata)+((metadata*)(ptr))->datasize;
         }
         if(ptr>=&mem[ArraySize]){
+
                 printf("NULL\n");
+                return NULL;
         }
 }
 
 
 void myfree(void* memAddr, char *variable2, size_t line2){
 
-
-char *ptr =(char*)memAddr;
-ptr = ptr-sizeof(metadata);
-((metadata*)(ptr))->free=0;
-
+printf("%p",memAddr);
+ 
+if((memAddr == NULL)){
+        printf("Cannot free this pointer.\n");
+}else{
+/*      char *ptr =(char*)memAddr;
+        ptr = ptr-sizeof(metadata);
+        ((metadata*)(ptr))->free=0;
+        printf("This pointer was free.\n");*/
+}
 
 }
 
@@ -59,5 +66,4 @@ void InitilizeFunction(){
         start->free = 0;
         start->datasize = 4096-sizeof(metadata);
 
-}
 }
