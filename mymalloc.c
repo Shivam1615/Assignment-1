@@ -47,7 +47,7 @@ void myfree(void* memAddr, char *variable2, size_t line2){
                 printf("Can't free NULL pointer");
                 return;
         }else{
-                printf("freed");
+                printf("freed\n");
                 ((metadata*)(ptr))->free=0;
         }
 
