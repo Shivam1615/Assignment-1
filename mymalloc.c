@@ -40,6 +40,5 @@ void InitilizeFunction(){
         metadata *start= (metadata*)&mem[0];
         start->free = 0;
         start->datasize = 4096-sizeof(metadata);
-        storage=storage+sizeof(metadata);
 
 }
