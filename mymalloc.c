@@ -36,11 +36,16 @@ void* mymalloc(size_t memSize, char *variable, size_t line1){
 }
 
 
-void free(void* memAddr, char *variable2, size_t line2){
+void myfree(void* memAddr, char *variable2, size_t line2){
 
+
+char *ptr =(char*)memAddr;
+ptr = ptr-sizeof(metadata);
+((metadata*)(ptr))->free=0;
 
 
 }
+
 
 void InitilizeFunction(){
 
