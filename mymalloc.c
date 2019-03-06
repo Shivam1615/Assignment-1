@@ -3,13 +3,14 @@
 void* mymalloc(size_t memSize, char *variable, size_t line1){
         char* ptr =&mem[0];
         char* position;
+
         while(ptr<=&mem[ArraySize-1]){
 
-                if((((metadata*)(ptr))->free==0)&((metadata*)(ptr))->datasize>=memSize){
+                if((((metadata*)(ptr))->free=='e')&((metadata*)(ptr))->datasize>=memSize){
                         printf("malloced\n");
                         position=ptr+sizeof(metadata);
                         int oldSize=((metadata*)(ptr))->datasize;
-                        ((metadata*)(ptr))->free=1;
+                        ((metadata*)(ptr))->free='u';
                         if( ((metadata*)(ptr))->datasize<=memSize+sizeof(metadata)){
 
                                 return (void*)position;
@@ -24,7 +25,7 @@ void* mymalloc(size_t memSize, char *variable, size_t line1){
 
                         char *newMetaData=position+memSize;
                         ((metadata*)(newMetaData))->datasize=oldSize-memSize-sizeof(metadata*);
-                        ((metadata*)(newMetaData))->free=0;
+                        ((metadata*)(newMetaData))->free='e';
 
                         return (void*)position;
                 }
@@ -40,25 +41,30 @@ void* mymalloc(size_t memSize, char *variable, size_t line1){
 void myfree(void* memAddr, char *variable2, size_t line2){
 
         char *ptr=(char*)memAddr;
-        ptr= ptr-sizeof(metadata);
+        ptr=ptr-sizeof(metadata);
 
+        if( (ptr)<&mem[0] || (ptr)>&mem[ArraySize-1]){
+                printf("Thats not a pointer");
+        }
 
         if(memAddr==NULL){
-                printf("Can't free NULL pointer");
+                printf("Can't free NULL pointer\n");
+                return;
+        }else if( ((metadata*)(ptr))->free!='u'){
+                printf("This address wasn't malloced\n");
                 return;
         }else{
                 printf("freed\n");
-                ((metadata*)(ptr))->free=0;
+                ((metadata*)(ptr))->free='e';
         }
 
         char *nextData=ptr+sizeof(metadata)+((metadata*)(ptr))->datasize;
-        if( ((metadata*)(nextData))->free==0){
+        if( ((metadata*)(nextData))->free=='e'){
 
                 ((metadata*)(ptr))->datasize+=(sizeof(metadata)+((metadata*)(nextData))->datasize);
                 return;
         }
         return;
-
 }
 
 void InitilizeFunction(){
