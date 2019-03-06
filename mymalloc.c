@@ -44,7 +44,7 @@ void myfree(void* memAddr, char *variable2, size_t line2){
         ptr=ptr-sizeof(metadata);
 
         if( (ptr)<&mem[0] || (ptr)>&mem[ArraySize-1]){
-                printf("Thats not a pointer");
+                printf("Thats not a pointer.\n");
         }
 
         if(memAddr==NULL){
