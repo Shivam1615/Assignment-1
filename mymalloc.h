@@ -5,8 +5,8 @@
 #define ArraySize 4096
 
 typedef struct metadata{
-int free;
-int datasize;
+char free;
+short int datasize;
 } metadata;
 
 
