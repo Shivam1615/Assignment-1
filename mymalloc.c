@@ -66,7 +66,6 @@ void myfree(void* memAddr, char *variable2, size_t line2){
         }
         return;
 }
-
 void InitilizeFunction(){
 
         int i;
@@ -75,9 +74,11 @@ void InitilizeFunction(){
                 mem[i] = '0';
         }
 
-        metadata *start= (metadata*)&mem[0];
-        start->free = 0;
-        start->datasize = 4096-sizeof(metadata);
+        metadata *start= (metadata*)(&mem[0]);
+        start->free = 'e';
+        start->datasize = ArraySize-sizeof(metadata);
+
+//      int *test=(int*)&mem[0];
 
 }
-}
+
