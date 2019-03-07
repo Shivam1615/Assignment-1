@@ -37,7 +37,39 @@ l++;
 j++;
 }
 
+/*
+ *Test Case C: Randomly choose between a 1 byte malloc() or free()ing a 1 byte pointer > do this until you have allocated 50 times
+ *  - Keep track of each operation so that you eventually malloc() 50 bytes, in total
+    > if you have already allocated 50 times, disregard the random and just free() on each iteration
+    - Keep track of each operation so that you eventually free() all pointers
+    > don't allow a free() if you have no pointers to free()
+ */
+int malloctracker = 0;
+int a = 0;
+while(a < 50){
+        char *pointer3 = malloc(1);
+        malloctracker++;
+        while(malloctracker > 0){
+                free(pointer3);
+                malloctracker--;
+        }
+        a++;
+}
 
+
+/*
+ * Test Case D: Randomly choose between a randomly-sized malloc() or free()ing a pointer – do this many times (see below)
+ * - Keep track of each malloc so that all mallocs do not exceed your total memory capacity - Keep track of each operation so that you eventually malloc() 50 times
+ * - Keep track of each operation so that you eventually free() all pointers
+ * - Choose a random allocation size between 1 and 64 bytes
+ */
+
+char *pointer4 = malloc(2);
+free(pointer4);
+malloc(1);
+free(pointer4);
+malloc(1);
+free(pointer4);
 
 return 0;
 }
