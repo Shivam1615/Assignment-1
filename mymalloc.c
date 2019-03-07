@@ -46,9 +46,10 @@ void myfree(void* memAddr, char *variable2, size_t line2){
         if( (ptr)<&mem[0] || (ptr)>&mem[ArraySize-1]){
                 printf("Thats not a pointer.\n");
         }
-        /*if(((metadata*)(ptr))->free == 'e'){
+        if(((metadata*)(ptr))->free == 'e'){
                 printf("This pointer is already allocated.\n");
-        }*/
+                return;
+        }
 
         if(memAddr==NULL){
                 printf("Can't free NULL pointer\n");
