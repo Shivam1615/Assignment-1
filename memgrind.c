@@ -20,7 +20,7 @@ i++;
  *Test Case 2: malloc() 1 byte, store the pointer in an array - do this 150 times.
  *Once you've malloc()ed 50 byte chunks, then free() the 50 1 byte pointers one by one.
  */
-/*int j = 0;
+int j = 0;
 int k = 0;
 int l = 0;
 while(j < 3){
@@ -37,7 +37,7 @@ l++;
 j++;
 }
 
-*/
+
 
 return 0;
 }
