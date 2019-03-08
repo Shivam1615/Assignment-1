@@ -24,7 +24,7 @@ int j = 0;
 int k = 0;
 int l = 0;
 while(j < 3){
-int *Array[50];
+char *Array[50];
 while(k < 50){
 char *pointer2 = malloc(1);
 Array[k] = pointer2;
@@ -44,19 +44,34 @@ j++;
     - Keep track of each operation so that you eventually free() all pointers
     > don't allow a free() if you have no pointers to free()
  */
+
 int malloctracker = 0;
-int a = 0;
-while(a < 50){
-        char *pointer3 = malloc(1);
-        malloctracker++;
-        while(malloctracker > 0){
-                free(pointer3);
-                malloctracker--;
+char *ArrayC[50];
+int mallocTotal;
+while(mallocTotal<50){
+        int pick = rand()%2;
+        if(pick==0){
+                char *pointer=malloc(1);
+                ArrayC[malloctracker]=pointer;
+                mallocTotal++;
+                malloctracker++;
+
         }
-        a++;
+        if( (pick==1)&&(malloctracker>0)){
+                free(ArrayC[malloctracker-1]);
+                malloctracker--;
+
+        }
+
+}
+while(malloctracker>0){
+
+        free(ArrayC[malloctracker-1]);
+        malloctracker--;
+
 }
 
-
+    
 /*
  * Test Case D: Randomly choose between a randomly-sized malloc() or free()ing a pointer – do this many times (see below)
  * - Keep track of each malloc so that all mallocs do not exceed your total memory capacity - Keep track of each operation so that you eventually malloc() 50 times
@@ -64,12 +79,36 @@ while(a < 50){
  * - Choose a random allocation size between 1 and 64 bytes
  */
 
-char *pointer4 = malloc(2);
-free(pointer4);
-malloc(1);
-free(pointer4);
-malloc(1);
-free(pointer4);
 
+    
+malloctracker = 0;
+char *ArrayD[50];
+mallocTotal=0;;
+while(mallocTotal<50){
+        int pick = rand()%2;
+        int randSize=(rand()%64)+1;
+        if(pick==0){
+
+                char *pointer=malloc(randSize);
+                ArrayD[malloctracker]=pointer;
+                mallocTotal++;
+                malloctracker++;
+
+        }
+        if( (pick==1)&&(malloctracker>0)){
+                free(ArrayD[malloctracker-1]);
+                malloctracker--;
+
+        }
+
+}
+while(malloctracker>0){
+
+        free(ArrayD[malloctracker-1]);
+        malloctracker--;
+
+}
+
+        
 return 0;
 }
