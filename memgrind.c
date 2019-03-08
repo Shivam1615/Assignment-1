@@ -108,6 +108,54 @@ while(malloctracker>0){
         malloctracker--;
 
 }
+    
+/*
+ *Test Case E:  
+ *
+ */
+
+/*int a;
+int b = 0;
+int c = 0;
+char *array[800];
+for(a = 0; a < 5; a++){
+        for(b = 0; b < 20; b++){
+                char *pointer = malloc(20);
+                array[b] = pointer;
+        }
+        for(c = 0; c < 20; c++){
+                free(array[c]);
+        }
+}
+*/
+
+char *array[30];
+int tracker = 0;
+int a = 0;
+while(a < 75){
+        int MallocOrFree = rand() % 2;
+        int Random = (rand() % 500) + 1;
+        if(MallocOrFree == 0){
+                char *pointer = malloc(Random);
+                array[a] = pointer;
+                tracker++;
+                a++;
+        }else if(MallocOrFree == 1 && tracker > 0){
+                free(array[tracker-1]);
+                tracker--;
+        }
+}
+        while(tracker > 0){
+                free(array[tracker-1]);
+                tracker--;
+        }
+
+
+/*
+ *Test Case F:
+ *
+ */
+
 
         
 return 0;
