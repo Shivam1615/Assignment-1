@@ -1,5 +1,5 @@
 #include <stdlib.h>
-
+#include <time.h>
 #define malloc( x ) mymalloc( x, __FILE__, __LINE__ )
 #define free( x ) myfree( x, __FILE__, __LINE__ )
 #define ArraySize 4096
@@ -9,6 +9,10 @@ char free;
 short int datasize;
 } metadata;
 
+struct timevalue{
+long value1;
+long value2;
+};
 
 static char mem[ArraySize];
 
