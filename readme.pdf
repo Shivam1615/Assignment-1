@@ -1,1 +1,24 @@
+NETID: srp218, dsg126
 
+Owners: Shivam Patel, Dhanush Gandham
+
+                                                                                        Project Analysis
+
+                        For this project, we had to create our own malloc and free functions that check for errors when dynamically allocatinf variables and when one has to free them.
+                                        In order for this to work, need to have metadata that stores the number of bytes in the array. We had to create a static global array that stores 4096 bytes and
+                                        then we had to allocate for user data with this limited amount of data. So for our design, we created a struct in our header file where we had up to maximum of 4
+                                        metadata bytes. We tried to reduce the number of metadata bytes from 8 to 4 for space efficiency. One of the variables in the struct was a char pointer that checked
+                                        as a flag if the metadata free is 1 or 0 using characters. This is checked for freeing the variables when we had full space in our malloc. Our second variable is used to
+                                        check the datasize as the amount the user wants to allocate dynamically. We used a short int for this, which gave 2 metadata bytes for the struct. Combined, all of this
+                                        gave us 4 bytes as there was one extra byte taking up space for the metadata. We put the struct into the static array by casting the array as a metadata pointer and pointing                               to the address.
+
+                        MallocFunction: For our malloc function, we checked if the function is initilized for the last byte and if it wasn't, then we would initilize the function in the start.
+                                        Then our function would just check if there is a free block in the array as we checking for the user data allocation. If the block is free, then we set
+                                        the block to 1 as a flag to indicate that this block is already in use. Then we used datasize as the user request for allocation and use up the requested amount
+                                        of block. After this, we check if any blocks are free and if they are not, then we return NULL as the array cannot take in any more data per user request.
+
+
+                        FreeFunction: For our free function, we check using the flag char variable from the struct to see if the blocks are free. If that is the case, then we set the variable to 0 using
+                                      char and then free the block with the user data content. We also check if we could allocate a statically allocated variable and we return to the function as you can only free
+                                      dynamically allocated variables. We also check to see if we malloced a variable and if it isn't allocated, then we return back to the function and printf("The variable is not
+                                      allocated by malloc function"); If the adjacent metadata block is free, then we combine the block in order to fit the user request for bytes from the malloc function
