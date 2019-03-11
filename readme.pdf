@@ -22,3 +22,7 @@ Owners: Shivam Patel, Dhanush Gandham
                                       char and then free the block with the user data content. We also check if we could allocate a statically allocated variable and we return to the function as you can only free
                                       dynamically allocated variables. We also check to see if we malloced a variable and if it isn't allocated, then we return back to the function and printf("The variable is not
                                       allocated by malloc function"); If the adjacent metadata block is free, then we combine the block in order to fit the user request for bytes from the malloc function
+
+                         Extra Credit: We tried to create the least amount of metadata bytes up to 4 bytes of metadata in our struct function. For our struct, we chose a variable that was a data type
+                                       of char and another variable of short int, which composed of 2 bytes. Our char variable composed of 1 byte and since the data is stored in the struct, it
+                                       became a total of 4 bytes instead of 3 bytes. The reason for having 4 bytes instead of 3 is because of the struct's padding ability.
