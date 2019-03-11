@@ -10,7 +10,7 @@ Owners: Shivam Patel, Dhanush Gandham
                                         metadata bytes. We tried to reduce the number of metadata bytes from 8 to 4 for space efficiency. One of the variables in the struct was a char pointer that checked
                                         as a flag if the metadata free is 1 or 0 using characters. This is checked for freeing the variables when we had full space in our malloc. Our second variable is used to
                                         check the datasize as the amount the user wants to allocate dynamically. We used a short int for this, which gave 2 metadata bytes for the struct. Combined, all of this
-                                        gave us 4 bytes as there was one extra byte taking up space for the metadata. We put the struct into the static array by casting the array as a metadata pointer and pointing                               to the address.
+                                        gave us 4 bytes as there was one extra byte taking up space for the metadata. We put the struct into the static array by casting the array as a metadata pointer and pointing to the address.
 
                         MallocFunction: For our malloc function, we checked if the function is initilized for the last byte and if it wasn't, then we would initilize the function in the start.
                                         Then our function would just check if there is a free block in the array as we checking for the user data allocation. If the block is free, then we set
