@@ -1,4 +1,5 @@
 #include "mymalloc.h"
+#include <stdio.h>
 
 void* mymalloc(size_t memSize, char *variable, size_t line1){
         char* ptr =&mem[0];
