@@ -1,1 +1,29 @@
-t
+NETID: Srp218, dsg126
+
+Owner's: Shivam Patel, Dhanush Gandham
+
+                                         TestPlan Description for the workloads E and F
+
+
+   
+        WorkloadE: For this case, I created a pointer variable and malloced it with 20 bytes while storing it in an array. 
+                   I did this 20 times in a loop, which malloced in total of about 170 bytes.
+                   Then I freed all of those variables in the array 20 times as there were no malloced bytes left. After 
+                   this, I decide to do this 5 times until everything is free and I decided
+                   to choose this workload because it tests how many metadata is left in the array and it tests how many  
+                   variables were malloced and then freed at the same time.
+
+        Workload F: For this case, I created a random variable to test how many times it is going to either malloc or free. 
+                    As  this happens, I have an operation that will keep track of how many variables
+                    are left and then decide to see randomly how many are malloced and then freed. It does this arbitraily 
+                    so that it keeps track of how many are malloced and how many are freed. Once
+                    this happens, it also mallocs and frees random number of times and then once I finish with all the 
+                    mallocs, then I free the rest of the variables left by using the number of mallocs
+                    left and frees everything else. This picks randomly bewteen 1 and 170 bytes This workload is a 
+                    good example of checking how many times the array can dynamically allocate and this is     
+                    important since we don't always know how much the user can allocate or free. It is important for the 
+                    function to be able to malloc and free x amount of times because it tests the
+                    function to see how much it can be able to malloc and free with a limit. The reason why I chose this 
+                    test case is so that I can check how much the array can be able to malloc and how
+                    far the number of the bytes the user can request.
+
